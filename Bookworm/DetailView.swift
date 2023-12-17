@@ -10,6 +10,12 @@ import SwiftUI
 
 struct DetailView: View {
     
+    let dateFormatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .long
+            return formatter
+        }()
+    
     let book: Book
     @Environment (\.modelContext) var modelContext
     @Environment (\.dismiss) var dismiss
@@ -40,6 +46,9 @@ struct DetailView: View {
             
             RatingView(rating: .constant(book.rating))
                 .font(.largeTitle)
+            Text("Finished on:").padding(.top)
+//            Text("\(book.readDate, formatter: dateFormatter)")
+                
         }
         .navigationTitle(book.title)
         .navigationBarTitleDisplayMode(.inline)

@@ -15,6 +15,7 @@ struct AddBookView: View {
     @State private var genre = "Fantasy"
     @State private var rating = 3
     @State private var review = ""
+    @State private var bookFinishDate = Date.now
     var formIsEmpty: Bool {
         let nameIsSet = title.count > 0
         print(nameIsSet)
@@ -36,6 +37,11 @@ struct AddBookView: View {
                             Text($0)
                         }
                     }
+                    DatePicker(
+                            "When did you finish this book?",
+                            selection: $bookFinishDate,
+                            displayedComponents: [.date]
+                        )
                 }
                 Section("Write a review") {
                     TextEditor(text: $review)
