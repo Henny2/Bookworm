@@ -26,9 +26,10 @@ struct ContentView: View {
                             EmojiRatingView(rating: book.rating)
                                 .font(.largeTitle)
                             VStack(alignment:.leading){
-                                Text(book.title).font(.headline)
+                                Text(book.title).font(book.rating==1 ? .footnote :  .headline)
                                 Text(book.author)
                                     .foregroundStyle(.secondary)
+                                    .font(book.rating==1 ? .footnote : .subheadline)
                             }
                         }
                     }
