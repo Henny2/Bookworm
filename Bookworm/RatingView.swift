@@ -27,7 +27,6 @@ struct RatingView: View {
             ForEach(1..<maximumRating+1, id: \.self) { number in
                 Button{
                     rating = number
-                    print(number)
                 } label: {
                     image(for: number)
                         .foregroundColor(number > rating ? offColor : onColor)

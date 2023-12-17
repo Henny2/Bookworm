@@ -15,6 +15,13 @@ struct AddBookView: View {
     @State private var genre = "Fantasy"
     @State private var rating = 3
     @State private var review = ""
+    var formIsEmpty: Bool {
+        let nameIsSet = title.count > 0
+        print(nameIsSet)
+        let authorIsSet = author.count > 0
+        let reviewIsSet = review.count > 0
+        return !nameIsSet || !authorIsSet || !reviewIsSet
+    }
     
     let genres = ["Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller"]
     var body: some View {
@@ -46,7 +53,7 @@ struct AddBookView: View {
                         dismiss()
                         
                     }
-                }
+                }.disabled(formIsEmpty)
             }.navigationTitle("Add Book")
         }
     }
