@@ -18,7 +18,6 @@ struct AddBookView: View {
     @State private var bookFinishDate = Date.now
     var formIsEmpty: Bool {
         let nameIsSet = title.count > 0
-        print(nameIsSet)
         let authorIsSet = author.count > 0
         let reviewIsSet = review.count > 0
         return !nameIsSet || !authorIsSet || !reviewIsSet
@@ -46,15 +45,10 @@ struct AddBookView: View {
                 Section("Write a review") {
                     TextEditor(text: $review)
                     RatingView(rating: $rating)
-//                    Picker("Rating", selection: $rating){
-//                        ForEach(0..<6){
-//                            Text(String($0))
-//                        }
-//                    }
                 }
                 Section {
                     Button("Save"){
-                       let newBook = Book(title: title, author: author, genre: genre, review: review, rating: rating)
+                       let newBook = Book(title: title, author: author, genre: genre, review: review, rating: rating, readDate: bookFinishDate)
                         modelContext.insert(newBook)
                         dismiss()
                         

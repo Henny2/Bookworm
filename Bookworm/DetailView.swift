@@ -46,8 +46,10 @@ struct DetailView: View {
             
             RatingView(rating: .constant(book.rating))
                 .font(.largeTitle)
-            Text("Finished on:").padding(.top)
-//            Text("\(book.readDate, formatter: dateFormatter)")
+            if let readDate = book.readDate {
+                Text("Finished on:").padding(.top)
+                Text("\(readDate , formatter: dateFormatter)")
+            }
                 
         }
         .navigationTitle(book.title)
@@ -76,7 +78,7 @@ struct DetailView: View {
     do {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: Book.self, configurations: config)
-        let example = Book(title: "Test Book", author: "J K Rowling", genre: "Fantasy", review: "This was so much fun to read! Can highly recommend.", rating: 4)
+        let example = Book(title: "Test Book", author: "J K Rowling", genre: "Fantasy", review: "This was so much fun to read! Can highly recommend.", rating: 4, readDate: Date())
         return DetailView(book: example)
             .modelContainer(container)
     } catch {
